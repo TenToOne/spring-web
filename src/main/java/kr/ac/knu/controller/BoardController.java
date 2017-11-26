@@ -62,12 +62,14 @@ public class BoardController {
     @PostMapping(value = "/v1/boards")
     @ResponseStatus(HttpStatus.CREATED)
     public void createBoard(@RequestBody BoardDTO boardDTO, @ApiIgnore @AuthenticationPrincipal KnuUser knuUser) {
+        log.info("create board : title: "+boardDTO);
         boardService.insertBoard(knuUser, boardDTO);
     }
 
     @PutMapping(value = "/v1/boards/{idx}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateBoard(@PathVariable int idx, @RequestBody BoardDTO boardDTO, @ApiIgnore @AuthenticationPrincipal KnuUser knuUser) {
+        log.info("update board : title: "+boardDTO);
         boardService.updateBoard(knuUser, idx, boardDTO);
     }
 
